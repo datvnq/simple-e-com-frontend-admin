@@ -1,0 +1,48 @@
+<nz-layout class="border-bottom border-light">
+    <nz-sider class="bg-dark">
+        <div class="logo">
+            <a routerLink="/admin/products">
+                <img src="/assets/images/logo.png" class="img-fluid" alt="Responsive image">
+            </a>
+        </div>
+    </nz-sider>
+    <nz-content>
+        <section class="border-bottom bg-dark pt-2">
+            <div class="navbar navbar-expand-lg navbar-light bg-dark">
+                <div class="col-md-8">
+                    <app-function></app-function>
+                </div>
+                <div class="col-md-4">
+                    <app-login-status></app-login-status>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="navbar navbar-expand-lg navbar-light bg-dark">
+                <div class="col-md-7">
+                    <div class="container-fluid mt-1 mb-1">
+                        <app-search></app-search>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                </div>
+            </div>
+        </section>
+    </nz-content>
+</nz-layout>
+
+<router-outlet></router-outlet>
+
+<!-- Footer -->
+<footer class="bg-dark text-white">
+
+    <section class="border-top">
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+            © 2022 Copyright:
+            <a class="text-white" routerLink="/admin/products">Dark</a>
+        </div>
+    </section>
+
+</footer>
+<!-- Footer -->

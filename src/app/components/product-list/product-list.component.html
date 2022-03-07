@@ -1,0 +1,41 @@
+<nz-layout>
+    <nz-sider class="bg-white border-dark border-right rounded-right">
+        <app-product-category></app-product-category>
+    </nz-sider>
+    <nz-content>
+        <div class="container-fluid p-4">
+            <div *ngIf="products?.length > 0">
+                <div class="table-responsive">
+                    <nz-table #sortTable [nzData]="products" nzTableLayout="fixed" class="table table-sm">
+                        <thead>
+                          <tr>
+                            <th *ngFor="let column of listOfColumn" [nzSortFn]="column.compare" [nzSortPriority]="column.priority" class="thead-dark">
+                              {{ column.title }}
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let data of sortTable.data">
+                            <td>{{ data.id }}</td>
+                            <td>{{ data.name }}</td>
+                            <td>{{ data.categoryName }}</td>
+                            <td>{{ data.unitPrice }}</td>
+                            <td>{{ data.unitInStock }}</td>
+                            <td>
+                                <button (click)="editProduct(data.id)" class="btn btn-dark" style="margin-right: 5px;">Edit</button>
+                                <button (click)="deleteProduct(data.id)" class="btn btn-dark">Delete</button>
+                            </td>
+                          </tr>
+                        </tbody>
+                    </nz-table>
+                </div>
+            </div>
+
+            <div *ngIf="products?.length == 0">
+                No products found.
+            </div>
+
+        </div>
+    
+    </nz-content>
+</nz-layout>
