@@ -10,3 +10,58 @@ nz-layout {
   margin-bottom: 48px;
 }
 
+thead {
+  background-color: #292b2c;
+  color: white;
+}
+
+.heading {
+  text-align: center;
+}
+
+.td-head {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-weight: bold;
+}
+
+.td-body {
+  text-align: center;
+  padding-top: 10px;
+}
+
+.pagination {
+  display: inline-block;
+}
+  
+.pagination a {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+  
+.active {
+  background-color: #ddd;
+  border-radius: 5px;
+}
+  
+.pagination a:hover:not(.active) {
+  background-color: #ddd;
+  border-radius: 5px;
+}
+
+footer {
+  background-color: #292b2c;
+  color: white;
+  clear: both;
+  position: absolute;
+  height: 50px;
+  width: 100%;
+}
+
+body {
+  margin:0;
+  padding:0;
+  height:100%;
+}

@@ -57,12 +57,12 @@ export class LoginComponent implements OnInit {
               this.invalidLogin = false;
               this.loginSuccess = true;
               localStorage.setItem('token', this.username);
-              this.router.navigate(['/admin/products']);
+              this.router.navigateByUrl('/admin/orders');
             }
             else {
               this.invalidLogin = true;
               this.loginSuccess = false;
-              // this.notification.error('Sorry you are not allowed to access this page', 'Please try again');
+              alert("You are not allowed to access this page!");
             }
           }
         ); 
@@ -70,6 +70,7 @@ export class LoginComponent implements OnInit {
       () => {
         this.invalidLogin = true;
         this.loginSuccess = false;
+        alert("Wrong username or password");
       }
     );
   }

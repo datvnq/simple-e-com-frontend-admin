@@ -13,16 +13,24 @@ export class ProductService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getAllProductsForAdmin(): Observable<Product[]> {
-    return this.httpClient.get<Product[]>(`${this.baseURL}/api/products`);
+  getAllProductsForAdmin(page: number, size: number): Observable<Product[]> {
+    return this.httpClient.get<Product[]>(`${this.baseURL}/api/products?` + `page=${page}&size=${size}`);
+  }
+
+  getProductsByKeywordForAdmin(keyword: string, page: number, size: number): Observable<Product[]> {
+    return this.httpClient.get<Product[]>(`${this.baseURL}/api/products?` + `keyword=${keyword}` + `&page=${page}&size=${size}`);
+  }
+
+  getProductsByCategoryIdForAdmin(categoryId: number, page: number, size: number): Observable<Product[]> {
+    return this.httpClient.get<Product[]>(`${this.baseURL}/api/products?` + `categoryId=${categoryId}` + `&page=${page}&size=${size}`);
+  }
+
+  getProductsByKeywordAndCategoryIdForAdmin(categoryId: number, keyword: string, page: number, size: number): Observable<Product[]> {
+    return this.httpClient.get<Product[]>(`${this.baseURL}/api/products?` + `categoryId=${categoryId}` + `&keyword=${keyword}` + `&page=${page}&size=${size}`);
   }
 
   getProductByIdForAdmin(productId: number): Observable<Product> {
     return this.httpClient.get<Product>(`${this.baseURL}/api/product/${productId}`);
-  }
-
-  getProductsByKeywordForAdmin(keyword: string): Observable<Product[]> {
-    return this.httpClient.get<Product[]>(`${this.baseURL}/api/products/${keyword}`);
   }
 
   editProductForAdmin(productId: number, product: Product): Observable<any> {
@@ -31,10 +39,6 @@ export class ProductService {
 
   deleteProductForAdmin(productId: number): Observable<any> {
     return this.httpClient.delete(`${this.baseURL}/api/product/${productId}`);
-  }
-
-  getProductsByCategoryIdForAdmin(categoryId: number): Observable<Product[]> {
-    return this.httpClient.get<Product[]>(`${this.baseURL}/api/productCategory/${categoryId}`);
   }
 
   getAllProductCategoriesForAdmin(): Observable<ProductCategory[]> {

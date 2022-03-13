@@ -1,0 +1,64 @@
+<section>
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                <div class="card bg-dark text-white" style="border-radius: 1rem;">
+                    <div class="card-body p-5 text-center">
+
+                        <div class="mb-md-2 mt-md-2 pb-2">
+
+                            <h2 class="fw-bold text-white-50 mb-2 text-uppercase">Edit order</h2>
+
+                            <form (ngSubmit)="onSubmit()">
+                                <div class="form-outline form-white mb-2">
+                                    <label class="form-label">Address</label>
+                                    <input type="text" class="form-control form-control-lg" [(ngModel)]="order.address" name="address">
+                                </div>
+                                <div class="form-outline form-white mb-2">
+                                    <label class="form-label">City</label>
+                                    <input type="text" class="form-control form-control-lg" [(ngModel)]="order.city" name="city">
+                                </div>
+                                <div class="form-outline form-white mb-2">
+                                    <label class="form-label">State</label>
+                                    <input type="text" class="form-control form-control-lg" [(ngModel)]="order.state" name="state">
+                                </div>
+                                <div class="form-outline form-white mb-4">
+                                    <label class="form-label">Country</label>
+                                    <input type="text" class="form-control form-control-lg" [(ngModel)]="order.country" name="country">
+                                </div>
+                                <div class="form-outline form-white mb-4">
+                                    <label class="form-label">Zipcode</label>
+                                    <input type="text" class="form-control form-control-lg" [(ngModel)]="order.zipCode" name="zipCode">
+                                </div>
+                                <div class="form-outline form-white mb-4">
+                                    <label class="form-label">First name</label>
+                                    <input type="text" class="form-control form-control-lg" [(ngModel)]="order.customerFirstName" name="customerFirstName">
+                                </div>
+                                <div class="form-outline form-white mb-4">
+                                    <label class="form-label">Last name</label>
+                                    <input type="text" class="form-control form-control-lg" [(ngModel)]="order.customerLastName" name="customerLastName">
+                                </div>
+                                <div class="form-outline form-white mb-4">
+                                    <label class="form-label">Email</label>
+                                    <input type="text" class="form-control form-control-lg" [(ngModel)]="order.customerEmail" name="customerEmail">
+                                </div>
+                                <div class="form-outline form-white mb-4">
+                                    <label class="form-label">Phone number</label>
+                                    <input type="text" class="form-control form-control-lg" [(ngModel)]="order.customerPhoneNumber" name="customerPhoneNumber">
+                                </div>
+                            
+                                <button class="btn btn-outline-light btn-lg px-5" type="submit">Update order</button>
+                            
+                            </form>
+
+                            <div class="mt-3">
+                                <p class="mb-0"><a routerLink="/admin/orders" class="text-white-50 fw-bold">Back to order list</a></p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

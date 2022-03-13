@@ -1,41 +1,118 @@
-<nz-layout>
+<section class="border-bottom bg-dark pt-1">
+  <div class="navbar navbar-expand-lg navbar-light bg-dark mb-1">
+    <div class="col-md-3" style="margin-left: 15px;">
+      <a routerLink="/admin/orders">
+        <img src="/assets/images/logo.png" style="width: 20%;">
+    </a>
+    </div>
+    <div class="col-md-6"></div>
+    <div class="col-md-2">
+      <app-login-status></app-login-status>
+    </div>
+  </div>
+</section>
+
+<body>
+  <nz-layout>
     <nz-sider class="bg-white border-dark border-right rounded-right">
-        <app-product-category></app-product-category>
+      <app-function></app-function>
     </nz-sider>
     <nz-content>
         <div class="container-fluid p-4">
-            <div *ngIf="products?.length > 0">
-                <div class="table-responsive">
-                    <nz-table #sortTable [nzData]="products" nzTableLayout="fixed" class="table table-sm">
-                        <thead>
-                          <tr>
-                            <th *ngFor="let column of listOfColumn" [nzSortFn]="column.compare" [nzSortPriority]="column.priority" class="thead-dark">
-                              {{ column.title }}
-                            </th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr *ngFor="let data of sortTable.data">
-                            <td>{{ data.id }}</td>
-                            <td>{{ data.name }}</td>
-                            <td>{{ data.categoryName }}</td>
-                            <td>{{ data.unitPrice }}</td>
-                            <td>{{ data.unitInStock }}</td>
-                            <td>
-                                <button (click)="editProduct(data.id)" class="btn btn-dark" style="margin-right: 5px;">Edit</button>
-                                <button (click)="deleteProduct(data.id)" class="btn btn-dark">Delete</button>
-                            </td>
-                          </tr>
-                        </tbody>
-                    </nz-table>
-                </div>
+          <div class="mb-3">
+            <app-search></app-search>
+          </div>
+          <div *ngIf="products?.length > 0">
+            <table class="table table-sm" style="table-layout: fixed;">
+              <thead class="heading">
+                <td class="td-head" style="width: 80px;">Id</td>
+                <td class="td-head" style="width: 300px;">Name</td>
+                <td class="td-head" style="width: 300px;">Category name</td>
+                <td class="td-head" style="width: 150px;">Unit price</td>
+                <td class="td-head" style="width: 150px;">Unit in stock</td>
+                <td class="td-head">Action</td>
+              </thead>
+
+              <tbody>
+                <tr *ngFor="let tempProduct of products">
+                  <td class="td-body">{{ tempProduct.id }}</td>
+                  <td class="td-body">{{ tempProduct.name }}</td>
+                  <td class="td-body">{{ tempProduct.categoryName }}</td>
+                  <td class="td-body">{{ tempProduct.unitPrice }}</td>
+                  <td class="td-body">{{ tempProduct.unitInStock }}</td>
+                  <td style="text-align: center;">
+                    <button (click)="editProduct(tempProduct.id)" class="btn btn-dark" style="margin-right: 5px;">Edit</button>
+                    <button (click)="deleteProduct(tempProduct.id)" class="btn btn-dark">Delete</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div class="d-flex justify-content-end mt-3" *ngIf="searchMode == false && hasCategoryId == false">
+              <div class="pagination">
+                  <a class="nav-link" routerLink="/admin/products" [queryParams]="{ page: 1 }" (click)="selectPage()">&laquo;</a>
+              </div>
+              <div class="pagination" *ngFor="let p of totalPages; let i = index" (click)="select(i)" [ngClass]="{'active': isActive(i)}">
+                  <a class="nav-link" routerLink="/admin/products" [queryParams]="{ page: i+1 }">{{i+1}}</a>
+              </div>
+              <div class="pagination">
+                  <a class="nav-link" routerLink="/admin/products" [queryParams]="{ page: totalPages?.length }" (click)="selectPage()">&raquo;</a>
+              </div>
             </div>
 
-            <div *ngIf="products?.length == 0">
-                No products found.
+            <div class="d-flex justify-content-end mt-3" *ngIf="searchMode == true && hasCategoryId == false">
+              <div class="pagination">
+                  <a class="nav-link" routerLink="/admin/products" [queryParams]="{ keyword: keyword, page: 1 }" (click)="selectPage()">&laquo;</a>
+              </div>
+              <div class="pagination" *ngFor="let p of totalPages; let i = index" (click)="select(i)" [ngClass]="{'active': isActive(i)}">
+                  <a class="nav-link" routerLink="/admin/products" [queryParams]="{ keyword: keyword, page: i+1 }">{{i+1}}</a>
+              </div>
+              <div class="pagination">
+                  <a class="nav-link" routerLink="/admin/products" [queryParams]="{ keyword: keyword, page: totalPages?.length }" (click)="selectPage()">&raquo;</a>
+              </div>
             </div>
+
+            <div class="d-flex justify-content-end mt-3" *ngIf="searchMode == false && hasCategoryId == true">
+              <div class="pagination">
+                  <a class="nav-link" routerLink="/admin/products" [queryParams]="{ categoryId: currentCategoryId, page: 1 }" (click)="selectPage()">&laquo;</a>
+              </div>
+              <div class="pagination" *ngFor="let p of totalPages; let i = index" (click)="select(i)" [ngClass]="{'active': isActive(i)}">
+                  <a class="nav-link" routerLink="/admin/products" [queryParams]="{ categoryId: currentCategoryId, page: i+1 }">{{i+1}}</a>
+              </div>
+              <div class="pagination">
+                  <a class="nav-link" routerLink="/admin/products" [queryParams]="{ categoryId: currentCategoryId, page: totalPages?.length }" (click)="selectPage()">&raquo;</a>
+              </div>
+            </div>
+
+            <div class="d-flex justify-content-end mt-3" *ngIf="searchMode == true && hasCategoryId == true">
+              <div class="pagination">
+                  <a class="nav-link" routerLink="/admin/products" [queryParams]="{ categoryId: currentCategoryId, keyword: keyword, page: 1 }" (click)="selectPage()">&laquo;</a>
+              </div>
+              <div class="pagination" *ngFor="let p of totalPages; let i = index" (click)="select(i)" [ngClass]="{'active': isActive(i)}">
+                  <a class="nav-link" routerLink="/admin/products" [queryParams]="{ categoryId: currentCategoryId, keyword: keyword, page: i+1 }">{{i+1}}</a>
+              </div>
+              <div class="pagination">
+                  <a class="nav-link" routerLink="/admin/products" [queryParams]="{ categoryId: currentCategoryId, keyword: keyword, page: totalPages?.length }" (click)="selectPage()">&raquo;</a>
+              </div>
+            </div>
+          </div>
+
+          <div *ngIf="products?.length == 0" class="alert alert-dark">
+            No products found.
+          </div>
 
         </div>
     
     </nz-content>
-</nz-layout>
+  </nz-layout>
+</body>
+
+<footer>
+  <section class="border-top">
+      <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+          © 2022 Copyright:
+          <a class="text-white" routerLink="/admin/products">Dark</a>
+      </div>
+  </section>
+</footer>
+

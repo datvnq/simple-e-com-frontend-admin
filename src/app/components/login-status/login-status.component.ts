@@ -25,7 +25,7 @@ export class LoginStatusComponent implements OnInit {
 
   logout() {
     localStorage.removeItem('token');
-    this.route.navigate(['/products']);
+    this.route.navigateByUrl('/');
   }
 
 }

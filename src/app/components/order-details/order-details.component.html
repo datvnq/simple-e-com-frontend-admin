@@ -1,0 +1,137 @@
+<section class="border-bottom bg-dark pt-1">
+    <div class="navbar navbar-expand-lg navbar-light bg-dark mb-1">
+      <div class="col-md-3" style="margin-left: 15px;">
+        <a routerLink="/admin/orders">
+          <img src="/assets/images/logo.png" style="width: 20%;">
+      </a>
+      </div>
+      <div class="col-md-6"></div>
+      <div class="col-md-2">
+        <app-login-status></app-login-status>
+      </div>
+    </div>
+</section>
+  
+<body>
+    <nz-layout>
+        <nz-sider class="bg-white border-dark border-right rounded-right">
+            <app-function></app-function>
+        </nz-sider>
+        <nz-content>
+            <div class="container-fluid p-4">
+                <h4 class="mb-3">Order details</h4>
+                <div class="row">
+                    <div class="col-6">
+                        <h6>General info</h6>
+                        <table class="table table-sm" style="table-layout: fixed;">
+                            <tbody>
+                                <tr>
+                                    <th>Order Id</th>
+                                    <td>{{ order.id }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Order tracking number</th>
+                                    <td>{{ order.orderTrackingNumber }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Date created</th>
+                                    <td>{{ order.dateCreated }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Total quantity</th>
+                                    <td>{{ order.totalQuantity }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Total price</th>
+                                    <td>{{ order.totalPrice }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Order notes</th>
+                                    <td>{{ order.note }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <h6 class="mt-4">Order items</h6>
+                        <table class="table table-sm" style="table-layout: fixed;">
+                            <thead>
+                                <tr>
+                                    <td class="order-item-head" style="width: 200px;">Name</td>
+                                    <td class="order-item-head">Product Id</td>
+                                    <td class="order-item-head">Quantity</td>
+                                    <td class="order-item-head">Unit price</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let tempOrderItem of orderItems">
+                                    <td>{{ tempOrderItem.name }}</td>
+                                    <td class="order-item-body">{{ tempOrderItem.productId }}</td>
+                                    <td class="order-item-body">{{ tempOrderItem.quantity }}</td>
+                                    <td class="order-item-body">{{ tempOrderItem.unitPrice | currency:'USD' }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-6">
+                        <h6>Shipping info</h6>
+                        <table class="table table-sm" style="table-layout: fixed;">
+                            <tbody>
+                                <tr>
+                                    <th>Address</th>
+                                    <td>{{ order.address }}</td>
+                                </tr>
+                                <tr>
+                                    <th>City</th>
+                                    <td>{{ order.city }}</td>
+                                </tr>
+                                <tr>
+                                    <th>State</th>
+                                    <td>{{ order.state }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Country</th>
+                                    <td>{{ order.country }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Zipcode</th>
+                                    <td>{{ order.zipCode }}</td>
+                                </tr>
+                            </tbody>
+                        </table>     
+                        <h6 class="mt-4">Customer info</h6>
+                        <table class="table table-sm" style="table-layout: fixed;">        
+                            <tbody>   
+                                <tr>
+                                    <th>First name</th>
+                                    <td>{{ order.customerFirstName }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Last name</th>
+                                    <td>{{ order.customerLastName }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Email</th>
+                                    <td>{{ order.customerEmail }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Phone number</th>
+                                    <td>{{ order.customerPhoneNumber }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </nz-content>
+    </nz-layout>
+</body>
+  
+<footer>
+    <section class="border-top">
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+            © 2022 Copyright:
+            <a class="text-white" routerLink="/admin/products">Dark</a>
+        </div>
+    </section>
+</footer>
+  
+  

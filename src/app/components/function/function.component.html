@@ -1,11 +1,41 @@
-<div class="container mb-2">
-    <button class="btn btn-light" style="margin-right: 10px;" (click)="viewAllProducts()">
-        View all products
-    </button>
-    <button class="btn btn-light" style="margin-right: 10px;" (click)="createProductCategory()">
-        Add product category
-    </button>
-    <button class="btn btn-light" style="margin-right: 10px;" (click)="createProduct()">
-        Add product
-    </button>
-</div>
+<nav class="navbar-sidebar">
+    <div class="container">
+        <h4 class="mt-2 pl-5">Menu</h4>
+        <ul class="list-unstyled navbar-list">
+            <li>
+                <button type="button" class="btn btn-dark mb-2" (click)="viewAllOrders()">
+                    View all orders
+                </button>
+            </li>
+            <li>
+                <button type="button" class="btn btn-dark mb-2" (click)="viewAllProducts()">
+                    View all products
+                </button>
+            </li>
+            <li>
+                <div class="select-option rounded mb-2">
+                    <label class="rounded mb-2" style="padding-left: 3px;">
+                        View products by category
+                    </label>
+                    <select [formControl]="selectForm" class="rounded mb-2" (change)="selectCategory($event)">
+                        <option value="0">-- Select category --</option>
+                        <option *ngFor="let tempProductCategory of productCategories" value="{{ tempProductCategory.id }}">
+                            {{ tempProductCategory.categoryName }}
+                        </option>
+                    </select>
+                </div>
+            </li>
+            <li>
+                <button type="button" class="btn btn-dark mb-2" (click)="createProductCategory()">
+                    Add product category
+                </button>
+            </li>
+            <li>
+                <button type="button" class="btn btn-dark mb-2" (click)="createProduct()">
+                    Add product
+                </button>
+            </li>
+        </ul>
+        
+    </div>
+</nav>
