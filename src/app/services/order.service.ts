@@ -1,8 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Country } from '../common/country';
 import { Order } from '../common/order';
 import { OrderItem } from '../common/order-item';
+import { State } from '../common/state';
 
 @Injectable({
   providedIn: 'root'
@@ -35,6 +37,14 @@ export class OrderService {
 
   getOrderItemsByOrderId(orderId: number): Observable<OrderItem[]> {
     return this.httpClient.get<OrderItem[]>(`${this.baseURL}/api/orderItems/${orderId}`);
+  }
+
+  getCountriesForAdmin(): Observable<Country[]> {
+    return this.httpClient.get<Country[]>(`${this.baseURL}/api/countries`);
+  }
+
+  getStates(countryCode: string): Observable<State[]> {
+    return this.httpClient.get<State[]>(`${this.baseURL}/api/states/${countryCode}`);
   }
   
 }

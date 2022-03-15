@@ -16,7 +16,17 @@
                                 </div>
                                 <div class="form-outline form-white mb-2">
                                     <label class="form-label">Category id</label>
+                                    <!--
                                     <input type="text" class="form-control form-control-lg" [(ngModel)]="product.categoryId" name="categoryId">
+                                    -->
+                                    <div>
+                                        <select class="form-control form-control-lg" style="text-align: center;" (change)="selectCategory($event)">
+                                            <option selected="true" disabled="disabled">-- Select category --</option>
+                                            <option *ngFor="let tempProductCategory of productCategories" value="{{ tempProductCategory.id }}">
+                                                {{ tempProductCategory.categoryName }}
+                                            </option>
+                                        </select>
+                                    </div>
                                 </div>
                                 <div class="form-outline form-white mb-2">
                                     <label class="form-label">Description</label>
@@ -26,11 +36,14 @@
                                     <label class="form-label">Unit price</label>
                                     <input type="text" class="form-control form-control-lg" [(ngModel)]="product.unitPrice" name="unitPrice">
                                 </div>
-                                <div class="form-outline form-white mb-2">
+                                <div class="form-outline form-white mb-2 mt-3">
                                     <label class="form-label">Image url</label>
-                                    <textarea type="text" class="form-control form-control-lg" [(ngModel)]="product.imageUrl" name="imageUrl" rows="2"></textarea>
+                                    <div>
+                                        <img [src]="url" height="200">
+                                        <input type="file" accept=".png; .img; .jpg; .jpeg" class="rounded mt-2" (change)="onSelectFile($event)">
+                                    </div>
                                 </div>
-                                <div class="form-outline form-white mb-4">
+                                <div class="form-outline form-white mb-4 mt-3">
                                     <label class="form-label">Unit in stock</label>
                                     <input type="text" class="form-control form-control-lg" [(ngModel)]="product.unitInStock" name="unitInStock">
                                 </div>

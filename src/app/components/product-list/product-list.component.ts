@@ -52,7 +52,7 @@ export class ProductListComponent implements OnInit {
       }
       this.productService.getProductsByKeywordAndCategoryIdForAdmin(this.currentCategoryId, this.keyword, this.page - 1, this.size).subscribe(
         data => {
-          this.products = data['productDtoList']
+          this.products = data['content']
           this.totalPages = new Array(data['totalPages']);
         }
       );
@@ -65,7 +65,7 @@ export class ProductListComponent implements OnInit {
       }
       this.productService.getProductsByKeywordForAdmin(this.keyword, this.page - 1, this.size).subscribe(
         data => {
-          this.products = data['productDtoList'];
+          this.products = data['content'];
           this.totalPages = new Array(data['totalPages']);
         }
       );
@@ -85,7 +85,7 @@ export class ProductListComponent implements OnInit {
 
       this.productService.getProductsByCategoryIdForAdmin(this.currentCategoryId, this.page - 1, this.size).subscribe(
         data => {
-          this.products = data['productDtoList'];
+          this.products = data['content'];
           this.totalPages = new Array(data['totalPages']);
         }
       );
@@ -97,7 +97,7 @@ export class ProductListComponent implements OnInit {
       }
       this.productService.getAllProductsForAdmin(this.page - 1, this.size).subscribe(
         data => {
-          this.products = data['productDtoList'];
+          this.products = data['content'];
           this.totalPages = new Array(data['totalPages']);
         }
       );

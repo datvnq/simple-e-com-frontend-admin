@@ -45,7 +45,7 @@ export class OrderListComponent implements OnInit {
     }
     this.orderService.getOrderByOrderTrackingNumberForAdmin(this.keyword, this.page - 1, this.size).subscribe(
       data => {
-        this.orders = data['orderDtoList'];
+        this.orders = data['content'];
         this.totalPages = new Array(data['totalPages']);
       }
     );
@@ -58,7 +58,7 @@ export class OrderListComponent implements OnInit {
     }
     this.orderService.getAllOrdersForAdmin(this.page - 1, this.size).subscribe(
       data => {
-        this.orders = data['orderDtoList'];
+        this.orders = data['content'];
         this.totalPages = new Array(data['totalPages']);
       }
     );

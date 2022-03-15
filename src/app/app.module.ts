@@ -30,6 +30,7 @@ import { OrderService } from './services/order.service';
 import { OrderDetailsComponent } from './components/order-details/order-details.component';
 import { SearchOrderComponent } from './components/search-order/search-order.component';
 import { EditOrderComponent } from './components/edit-order/edit-order.component';
+import { ImgUploadService } from './services/img-upload.service';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,7 @@ import { EditOrderComponent } from './components/edit-order/edit-order.component
     NzTableModule,
     NzDropDownModule
   ],
-  providers: [AuthService, ProductService, OrderService, AuthGuard],
+  providers: [AuthService, ProductService, OrderService, AuthGuard, ImgUploadService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

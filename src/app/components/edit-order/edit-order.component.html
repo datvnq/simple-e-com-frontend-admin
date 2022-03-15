@@ -18,13 +18,28 @@
                                     <label class="form-label">City</label>
                                     <input type="text" class="form-control form-control-lg" [(ngModel)]="order.city" name="city">
                                 </div>
-                                <div class="form-outline form-white mb-2">
-                                    <label class="form-label">State</label>
-                                    <input type="text" class="form-control form-control-lg" [(ngModel)]="order.state" name="state">
-                                </div>
                                 <div class="form-outline form-white mb-4">
                                     <label class="form-label">Country</label>
+                                    <!--
                                     <input type="text" class="form-control form-control-lg" [(ngModel)]="order.country" name="country">
+                                    -->
+                                    <div>
+                                        <select class="form-control form-control-lg" [(ngModel)]="order.country" (change)="getStates($event)" name="country">
+                                            <option *ngFor="let tempCountry of countries" value="{{ tempCountry.code }}">
+                                                {{ tempCountry.name }}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-outline form-white mb-2">
+                                    <label class="form-label">State</label>
+                                    <div>
+                                        <select class="form-control form-control-lg" [(ngModel)]="order.state" name="state">
+                                            <option *ngFor="let tempState of states" value="{{ tempState.name }}">
+                                                {{ tempState.name }}
+                                            </option>
+                                        </select>
+                                    </div>
                                 </div>
                                 <div class="form-outline form-white mb-4">
                                     <label class="form-label">Zipcode</label>

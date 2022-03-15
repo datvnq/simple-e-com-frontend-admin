@@ -39,7 +39,7 @@
                             <td class="td-body">{{ tempOrder.orderTrackingNumber }}</td>
                             <td class="td-body">{{ tempOrder.totalQuantity }}</td>
                             <td class="td-body">{{ tempOrder.totalPrice }}</td>
-                            <td class="td-body">{{ tempOrder.dateCreated }}</td>
+                            <td class="td-body">{{ (tempOrder.dateCreated * 1000) | date: 'medium' }}</td>
                             <td style="text-align: center;">
                                 <button (click)="orderDetails(tempOrder.id)" class="btn btn-dark" style="margin-right: 5px;">Details</button>
                                 <button (click)="editOrder(tempOrder.id)" class="btn btn-dark" style="margin-right: 5px;">Edit</button>
