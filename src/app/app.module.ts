@@ -1,7 +1,7 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, Title } from '@angular/platform-browser';
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -64,7 +64,7 @@ import { ImgUploadService } from './services/img-upload.service';
     NzTableModule,
     NzDropDownModule
   ],
-  providers: [AuthService, ProductService, OrderService, AuthGuard, ImgUploadService],
+  providers: [AuthService, ProductService, OrderService, AuthGuard, ImgUploadService, Title],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
